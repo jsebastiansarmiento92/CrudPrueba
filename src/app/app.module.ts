@@ -4,10 +4,10 @@ import {FormsModule} from '@angular/forms'
 import {BrowserAnimationsModule  } from "@angular/platform-browser/animations";
 //import { ToastrModule } from "ngx-toastr";
 //firebase
-import {AngularFireDatabaseModule} from 'angularfire2/database'
-import {AngularFireModule} from 'angularfire2'
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {AngularFireModule} from 'angularfire2';
 import{AngularFireStorageModule}from 'angularfire2/storage';
-
+import {AngularFireAuthModule} from 'angularfire2/auth';
 //componentes
 import { AppComponent } from './app.component';
 import {environment}from '../environments/environment';
@@ -25,7 +25,8 @@ import { NfPageComponent } from './components/nf-page/nf-page.component';
 import{ProductService}from './services/product.service';
 import { CountriesComponent } from './components/countries/countries.component'
 import {HttpClientModule}from '@angular/common/http'
-
+//import {FlashMessagesModule} from 'angular2-flash-messages';
+//import {FlashMessagesService} from 'angular2-flash-messages';
 import{AuthService}from './services/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -54,11 +55,13 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     //ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireAuthModule
   ],
   providers: [
     ProductService,
-    AuthService
+    AuthService,
+
   ],
   bootstrap: [AppComponent]
 })

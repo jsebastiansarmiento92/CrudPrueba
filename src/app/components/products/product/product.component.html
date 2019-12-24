@@ -1,0 +1,97 @@
+<h1>componente de producto</h1>
+
+<div class="card mt-5">
+       <div class="card-body">
+              <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+                     <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="productService.selectProduct.$key">
+                     <div class="form-group">
+                            <input type="text" class="form-control" name="name" #name="ngModel"
+                                   [(ngModel)]="productService.selectProduct.name"
+                                   placeholder="Agregar nombre de producto">
+                     </div>
+                     <div class="form-group">
+                            <input type="text" class="form-control" name="characteristic" #name="ngModel"
+                                   [(ngModel)]="productService.selectProduct.characteristic"
+                                   placeholder="Agregar caracteristica de producto">
+                     </div>
+
+                     <div class="form-group">fecha de lanzamiento
+                            <input type="date" name="fecha" min="2015-01-01" max="2020-12-31" step="1"
+                                   class="form-control" name="releaseDate" #name="ngModel"
+                                   [(ngModel)]="productService.selectProduct.releaseDate"
+                                   placeholder="Agregar fecha de lanzamiento del producto">
+                     </div>
+                     <div class="form-group">
+                            <input type="email" class="form-control" name="manufacturerMail" #name="ngModel"
+                                   [(ngModel)]="productService.selectProduct.manufacturerMail"
+                                   placeholder="Ingresa correo de fabricante">
+                     </div>
+
+                     <div class="form-group">
+                            <select name="select" [(ngModel)]="opcionSeleccionado" class="form-control" name="country"
+                                   #name="ngModel" [(ngModel)]="productService.selectProduct.country"
+                                   (change)="capturar()">
+                                   <option value="0">Selecciona una opción</option>
+                                   <option *ngFor="let country of countries">
+
+                                          {{country.name}}
+                                   </option>
+                            </select>
+                            <p [hidden]="opcionSeleccionado == '0'"></p>
+                     </div>
+
+                     <div id="salida"></div>
+
+                     <div class="form-group">
+                            <input type="number" class="form-control" name="price" #name="ngModel"
+                                   [(ngModel)]="productService.selectProduct.price"
+                                   placeholder="Ingresa el valor de producto" [(ngModel)]="valor">
+                            Valor: {{ valor | currency: 0 : symbol}} {{code}}
+                     </div>
+
+                     <div class="form-group">
+                            <input type="number" class="form-control" name="stock" #name="ngModel"
+                                   [(ngModel)]="productService.selectProduct.stock"
+                                   placeholder="Ingresa Cantidad de productos">
+
+                     </div>
+                     <div class="form-group">
+                            <input type="number" class="form-control" name="soldUnit" #name="ngModel"
+                                   [(ngModel)]="productService.selectProduct.soldUnit"
+                                   placeholder="Ingresa productos vendidos">
+
+                     </div>
+
+                     <div class="form-group">
+                            <input type="file" class="form-control" accept=".png,jpg" (change)="onUpload($event)">
+                     </div>
+                     <div class="form-group">
+                            <input #name="ngModel" type="text" id="textUrl" [value]="imageUrl2|async"
+                                   class="form-control" name="imageUrl"
+                                   [(ngModel)]="productService.selectProduct.imageUrl" placeholder="Ruta">
+
+                     </div>
+                     <div class="form-group">
+                            <button *ngIf="imageUrl2 | async;else btnDisabled" class="btn btn-primary" type="submit">
+                                   <i class="fa fa-plus-circle"></i>
+                                   {{nombreBtnForm}}
+                            </button>
+                            <ng-template #btnDisabled >
+                                   <button class="btn btn-primary" disabled=true type="submit">
+                                          <i class="fa fa-plus-circle"></i>
+                                          {{nombreBtnForm}}
+
+                                   </button>
+                            </ng-template>
+                           
+
+                            <button class="btn btn-secondary" type="reset" (click)="resetForm(productForm)">
+                                   <i class="fas fa-window-close"></i>
+                                   Cerrar
+                            </button>
+
+                     </div>
+
+              </form>
+       </div>
+</div>
