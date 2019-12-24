@@ -29,7 +29,7 @@ import {HttpClientModule}from '@angular/common/http'
 //import {FlashMessagesService} from 'angular2-flash-messages';
 import{AuthService}from './services/auth.service';
 import { AppRoutingModule } from './app-routing.module';
-
+import {AuthGuard} from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -61,7 +61,7 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     ProductService,
     AuthService,
-
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

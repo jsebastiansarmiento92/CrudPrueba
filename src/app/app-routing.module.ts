@@ -8,15 +8,15 @@ import {NfPageComponent} from './components/nf-page/nf-page.component';
 import{ProductsComponent} from './components/products/products.component';
 import { from } from 'rxjs';
 
-//import {AuthGuard} from './guards/auth.guard';
+import {AuthGuard} from './guards/auth.guard';
 
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'privado', component: PrivatePageComponent},
-  {path: 'productos', component: ProductsComponent},
+  {path: 'privado', component: PrivatePageComponent,canActivate:[AuthGuard]},
+  {path: 'productos', component: ProductsComponent,canActivate:[AuthGuard]},
   {path: '**', component: NfPageComponent}
 ];
 
