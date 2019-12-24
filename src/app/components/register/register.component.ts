@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit {
     .then((res) => {
      console.log(res);
      this.router.navigate(['/productos']);
+     
     }).catch( (err) => {
       console.log(err);
     }); 

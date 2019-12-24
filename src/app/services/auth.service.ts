@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { map } from 'rxjs/operators';
+//import {  } from 'rxjs/operator/map';
 
 
 @Injectable()
@@ -35,15 +35,7 @@ export class AuthService {
   }
 
   getAuth() {
-    return firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-      
-      } else {
-        // No user is signed in.
-      }
-    });
-    
+    return this.afAuth.authState.pipe(auth => auth);
   }
 
   logout() {
