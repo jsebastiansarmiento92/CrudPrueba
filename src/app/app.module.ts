@@ -14,7 +14,12 @@ import {environment}from '../environments/environment';
 import { ProductsComponent } from './components/products/products.component';
 import { ListProductsComponent } from './components/Products/list-products/list-products.component';
 import { ProductComponent } from './components/Products/product/product.component';
-
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { PrivatePageComponent } from './components/private-page/private-page.component';
+import { NfPageComponent } from './components/nf-page/nf-page.component';
 
 //services
 import{ProductService}from './services/product.service';
@@ -31,7 +36,13 @@ import { AppRoutingModule } from './app-routing.module';
     ProductsComponent,
     ListProductsComponent,
     ProductComponent,
-    CountriesComponent
+    CountriesComponent,
+    HomePageComponent,
+    NavBarComponent,
+    RegisterComponent,
+    LoginComponent,
+    PrivatePageComponent,
+    NfPageComponent
     
   ],
   imports: [
