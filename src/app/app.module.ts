@@ -25,11 +25,12 @@ import { NfPageComponent } from './components/nf-page/nf-page.component';
 import{ProductService}from './services/product.service';
 import { CountriesComponent } from './components/countries/countries.component'
 import {HttpClientModule}from '@angular/common/http'
-//import {FlashMessagesModule} from 'angular2-flash-messages';
-//import {FlashMessagesService} from 'angular2-flash-messages';
+import {FlashMessagesModule} from 'angular2-flash-messages';
+import {FlashMessagesService} from 'angular2-flash-messages';
 import{AuthService}from './services/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import {AuthGuard} from './guards/auth.guard';
+
 
 @NgModule({
   declarations: [
@@ -56,12 +57,14 @@ import {AuthGuard} from './guards/auth.guard';
     //ToastrModule.forRoot(),
     BrowserAnimationsModule,
     AppRoutingModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FlashMessagesModule
   ],
   providers: [
     ProductService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    FlashMessagesService
   ],
   bootstrap: [AppComponent]
 })
