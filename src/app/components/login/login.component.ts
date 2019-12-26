@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   onClickGoogleLogin() {
    this.authService.loginGoogle()
     .then((res) => {
-        this.router.navigate(['/privado']);
+        this.router.navigate(['/productos']);
     }).catch( err => console.log(err.message));
   }
 
