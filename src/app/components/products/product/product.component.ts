@@ -8,7 +8,7 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { Product } from 'src/app/models/product';
 import {finalize} from 'rxjs/operators';
 import{Observable} from 'rxjs/internal/Observable';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product',
@@ -26,7 +26,9 @@ export class ProductComponent implements OnInit {
   uploadPercent:Observable<number>;
   imageUrl2:Observable<string>;
   nombreBtnForm:string="Agregar";
-  constructor(private productService:ProductService,private dataService:DataService,private storage:AngularFireStorage) {
+  filterPost='';
+
+  constructor(private productService:ProductService,private dataService:DataService,private storage:AngularFireStorage,private toastr:ToastrService) {
     this.dataService.getData().subscribe(data=>{
       this.countries=data;
 
@@ -57,10 +59,12 @@ ngOnInit() {
 
 if (productForm.value.$key!=null ) {
   this.productService.updateProduct(productForm.value);
-  this.nombreBtnForm="Editar";
+  this.nombreBtnForm="Editar"; 
+  this.toastr.success('Producto editado correctamente','producto editado sin inconveniente');
+  
 }else{
   this.productService.insertProduct(productForm.value);
-
+  this.toastr.success('Producto guardado correctamente','producto guardado sin inconveniente');
   
 }
 this.resetForm(productForm);

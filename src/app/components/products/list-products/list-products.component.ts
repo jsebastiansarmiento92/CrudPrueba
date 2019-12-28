@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 // model
 import { Product } from '../../../models/product';
-//import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -16,9 +16,11 @@ export class ListProductsComponent implements OnInit {
 
 
   productList: Product[];
- 
-
-  constructor(private productService: ProductService) {
+  listFilter:string[]=['Nombre','Pais'];
+  opcionSeleccionado: string  = '0';
+  filterPost:string[]=[];
+  
+  constructor(private productService: ProductService,private toastr:ToastrService) {
 
   }
 
@@ -40,10 +42,16 @@ export class ListProductsComponent implements OnInit {
     this.productService.selectProduct=Object.assign({},product);
   }
   onDelete($key:string){
-  //  if(confirm('Are you sure you want to delete it?')) {
+   if(confirm('Estaseguro que desea remover el producto?')) {
       this.productService.deleteProduct($key);
-     // this.toastr.warning('Deleted Successfully', 'Product Removed');
- //   }
+      this.toastr.warning('Eliminacion completa', 'Producto removido');
+   }
+  }
+
+  capturar(option){
+    this.filterPost.push(this.opcionSeleccionado);
+    console.log(this.filterPost);
+    
   }
 }
 

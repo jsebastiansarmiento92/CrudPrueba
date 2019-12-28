@@ -4,15 +4,35 @@
         <table class="table table-sm table-hover">
 
             <body>
+                <div class="form-group">
+                    <h4>buscar por:</h4>
+                    <select name="select" [(ngModel)]="opcionSeleccionado" class="form-control" name="filtroPor"
+                        (change)="capturar(option)">
+                        <option value="0">Seleccione filtro</option>
+                        <option *ngFor="let option of listFilter">{{option}}</option>
+
+                    </select>
+                    <p [hidden]="opcionSeleccionado == '0'"></p>
+                </div>
+                <input type="text" class="form-control" placeholder="buscar" name="filterPost" [(ngModel)]="filterPost">
                 <td>
-                    <h4>|Nombre</h4>
+                    <h4>Nombre</h4>
                 </td>
                 <td>
-                    <h4>|Precio</h4>
+                    <h4>Precio</h4>
                 </td>
-                <tr *ngFor="let product of productList">
+                <td>
+                    <h4>Fecha</h4>
+                </td>
+                <td>
+                    <h4>Inventario</h4>
+                </td>
+
+                <tr *ngFor="let product of productList | pipesfilter:filterPost ">
                     <td>{{product.name}}</td>
                     <td>{{product.price}}</td>
+                    <td>{{product.releaseDate}}</td>
+                    <td>{{product.stock}}</td>
                     <td>
                         <a class="btn btn-secondary tex-white" (click)="onEdit(product)">
                             <i class="fas fa-edit"></i>
@@ -22,11 +42,6 @@
                             <i class="fas fa-trash-alt "></i>
                         </a>
                     </td>
-
-
-
-
-
                 </tr>
             </body>
         </table>
