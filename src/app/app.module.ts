@@ -32,6 +32,7 @@ import{AuthService}from './services/auth.service';
 import { AppRoutingModule } from './app-routing.module';
 import {AuthGuard} from './guards/auth.guard';
 import { PipesfilterPipe } from './pipes/pipesfilter.pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { PipesfilterPipe } from './pipes/pipesfilter.pipe';
     BrowserAnimationsModule,
     AppRoutingModule,
     AngularFireAuthModule,
-    FlashMessagesModule
+    FlashMessagesModule,
+    NgxPaginationModule
   ],
   providers: [
     ProductService,

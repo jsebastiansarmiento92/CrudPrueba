@@ -5,9 +5,9 @@
 
             <body>
                 <div class="form-group">
-                    <h4>buscar por:</h4>
+                    <h4>Seleccionar cantidad de registros por pagina</h4>
                     <select name="select" [(ngModel)]="opcionSeleccionado" class="form-control" name="filtroPor"
-                        (change)="capturar(option)">
+                        (change)="capturar()">
                         <option value="0">Seleccione filtro</option>
                         <option *ngFor="let option of listFilter">{{option}}</option>
 
@@ -15,6 +15,9 @@
                     <p [hidden]="opcionSeleccionado == '0'"></p>
                 </div>
                 <input type="text" class="form-control" placeholder="buscar" name="filterPost" [(ngModel)]="filterPost">
+                <td>
+                    <h4>#</h4>
+                </td>
                 <td>
                     <h4>Nombre</h4>
                 </td>
@@ -28,7 +31,9 @@
                     <h4>Inventario</h4>
                 </td>
 
-                <tr *ngFor="let product of productList | pipesfilter:filterPost ">
+                <tr
+                    *ngFor="let product of productList | pipesfilter:filterPost | paginate:{itemsPerPage:opcionSeleccionado,currentPage:pageActual}; let i=index">
+                    <td>{{i+1}}</td>
                     <td>{{product.name}}</td>
                     <td>{{product.price}}</td>
                     <td>{{product.releaseDate}}</td>
@@ -45,6 +50,7 @@
                 </tr>
             </body>
         </table>
+        <pagination-controls (pageChange)="pageActual = $event"> </pagination-controls>
     </div>
 
 </div>

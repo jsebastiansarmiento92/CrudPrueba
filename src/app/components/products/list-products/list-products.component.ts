@@ -16,17 +16,17 @@ export class ListProductsComponent implements OnInit {
 
 
   productList: Product[];
-  listFilter:string[]=['Nombre','Pais'];
+  listFilter:string[]=[];
   opcionSeleccionado: string  = '0';
-  filterPost:string[]=[];
+  filterPost:string;
   
   constructor(private productService: ProductService,private toastr:ToastrService) {
-
+   
   }
 
   ngOnInit() {
     //snapshotChanges es un metodo de firebase el cual me trae en tiempo real toda la base de datos y los cambios realizados a esta
-    return this.productService.getProducts().
+    this.productService.getProducts().
       snapshotChanges().subscribe(item => {
         this.productList = [];
         item.forEach(element => {
@@ -35,7 +35,8 @@ export class ListProductsComponent implements OnInit {
           this.productList.push(x as Product);
         });
       });
-
+     this.pushPag();
+      return this.productService;
   }
 
   onEdit(product:Product){
@@ -48,10 +49,15 @@ export class ListProductsComponent implements OnInit {
    }
   }
 
-  capturar(option){
-    this.filterPost.push(this.opcionSeleccionado);
+  capturar(){
+    this.filterPost;
     console.log(this.filterPost);
-    
+  }
+  pushPag(){
+    for (let i = 0; i < 20; i++) {
+     this.listFilter.push(i+'');
+    }
+     
   }
 }
 
